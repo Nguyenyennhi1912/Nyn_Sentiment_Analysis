@@ -13,7 +13,6 @@ from sklearn import metrics
 import seaborn as sns
 import regex
 import demoji
-from pyvi import ViPosTagger, ViTokenizer
 import string
 import pickle
 from sklearn.model_selection import train_test_split
