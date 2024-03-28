@@ -7,3 +7,9 @@ scikit-learn
 regex
 demoji
 pyvi
+imblearn
+sklearn
+pickle
+underthesea
+xgboost
+datetime
