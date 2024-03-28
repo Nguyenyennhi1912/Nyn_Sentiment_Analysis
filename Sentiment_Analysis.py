@@ -11,7 +11,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn import metrics
 import seaborn as sns
-from underthesea import word_tokenize, pos_tag, sent_tokenize
 import regex
 import demoji
 from pyvi import ViPosTagger, ViTokenizer
