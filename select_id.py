@@ -21,7 +21,7 @@ from pyvi import ViPosTagger, ViTokenizer
 import string
 import pickle
 
-data = pd.read_csv(r"GUI\Reviews_concat.csv")
+data = pd.read_csv(r"Reviews_concat.csv")
 
 def enter_your_idrestaurant(id):
     # Nếu người dùng chọn nhập dữ liệu vào text area
