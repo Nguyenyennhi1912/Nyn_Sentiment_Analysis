@@ -30,7 +30,7 @@ from sklearn.svm import SVC
 from datetime import datetime
 from sklearn.model_selection import *
 from xu_ly_tieng_viet import *
-from select_id import *
+# from select_id import *
 
 # GUI
 st.title("DATA SCIENCE PROJECT")
