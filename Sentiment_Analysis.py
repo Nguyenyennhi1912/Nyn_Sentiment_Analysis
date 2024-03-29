@@ -40,7 +40,7 @@ if choice == 'Business Objective':
     st.write("""
              #### Sentiment Analysis through reviews and comments on products and services is one of the common natural language processing tasks in business. Natural language processing and machine learning can help classify customer emotions accurately.""") 
     st.write("#### => Problem/ Requirement: Use Machine Learning algorithms in Python for Sentiment analysis.")
-    st.image(r"C:\Users\Admin\Desktop\Project Python\GUI\sentiment.jpg")
+    st.image(r"GUI\sentiment.jpg")
 
 if choice == 'Result Model':
     st.subheader("Result Model")
@@ -54,7 +54,7 @@ if choice == 'Result Model':
 
     ## Preprocessing
     st.write("##### 2. Preprocessing")
-    a = pd.read_csv(r'C:\Users\Admin\Desktop\Project Python\Project1\Sentiment_by_Rating.csv')
+    a = pd.read_csv(r'Project1\Sentiment_by_Rating.csv')
     st.dataframe(a[["Rating","Comment","Sentiment"]].head(10))
     fig = sns.countplot(data=a,
               x='Sentiment',
@@ -67,9 +67,9 @@ if choice == 'Result Model':
     st.write("=> Dùng nhận xét (Comment) của khách hàng để phân tích")
 
     st.write("##### 3. Build Model")
-    reviews = pd.read_csv(r'Project1/Reviews_after_EDA_1.csv')
-    y_test = pd.read_csv(r"Project1\y_test.csv")
-    y_pred_SVC = pd.read_csv(r"Project1\y_pred_SVC.csv")
+    reviews = pd.read_csv(r'GUI\Reviews_after_EDA_1.csv')
+    y_test = pd.read_csv(r"GUI\y_test.csv")
+    y_pred_SVC = pd.read_csv(r"GUI\y_pred_SVC.csv")
     y_pred_SVC = y_pred_SVC.to_numpy()
     
     st.code(confusion_matrix(y_test, y_pred_SVC))
@@ -85,7 +85,7 @@ elif choice == 'Predict Comment':
         content = st.text_area("Nhập ý kiến:")
         comment = optimized_process_text(content)
         # Nếu người dùng nhập dữ liệu đưa content này vào thành 1 dòng trong DataFrame
-        with open(r'C:\Users\Admin\Desktop\Project Python\GUI\pipeline_SVC_1.pkl', 'rb') as file:  
+        with open(r'GUI\pipeline_SVC_1.pkl', 'rb') as file:  
             model = pickle.load(file)
         comment_pred = model.predict([comment])
         # st.code("New predictions: " + str(comment_pred))
@@ -98,7 +98,7 @@ elif choice == 'Predict Comment':
             df = df.append({"Comment": st.text_area(f"Nhập ý kiến {i+1}:")}, ignore_index=True)
         df.dropna(inplace=True)
         df['Cleaned'] = df['Comment'].apply(lambda x: optimized_process_text(x))        
-        with open(r'C:\Users\Admin\Desktop\Project Python\GUI\pipeline_SVC_1.pkl', 'rb') as file:  
+        with open(r'GUI\pipeline_SVC_1.pkl', 'rb') as file:  
             model = pickle.load(file)
         df['Prediction'] = df['Cleaned'].apply(lambda x: model.predict([x]))  
         # st.dataframe(df[["Comment","Prediction"]])
@@ -117,7 +117,7 @@ elif choice == 'Predict Comment':
 
 elif choice == 'Recommend based on IDRestaurant':
     st.subheader("Recommend based on IDRestaurant")
-    data = pd.read_csv(r"C:\Users\Admin\Desktop\Project Python\Project1\Reviews_concat.csv")
+    data = pd.read_csv(r"Project1\Reviews_concat.csv")
     # Cho người dùng chọn nhập ID nhà hàng và xem thông tin nhà hàng đó
     type = st.selectbox("What's IDRestaurant?", list(data['IDRestaurant'].unique()))
     visual = st.radio("Do you want to visualize the data?", ("Yes", "No"))
