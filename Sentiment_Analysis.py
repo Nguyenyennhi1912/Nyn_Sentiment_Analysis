@@ -38,13 +38,13 @@ st.write("## Project 1: SENTIMENT ANALYSIS")
 menu = ["ABOUT PROJECT", "PREDICT COMMENT", "RECOMMEND ON ID"]
 choice = st.sidebar.selectbox('CONTENTS', menu)
 if choice == 'ABOUT PROJECT':
-    st.subheader("Business Objective", divider='rainbow')
+    st.subheader("Business Objective", divider='grey')
     st.write(""" ###### Sentiment Analysis (Phân tích tình cảm/cảm xúc) là một trong những cách sử dụng ngôn ngữ tự nhiên để nhận diện và nghiên cứu trạng thái cảm xúc và thông tin chủ quan một cách có hệ thống. Sentiment Analysis là quá trình phân tích, đánh giá quan điểm (tích cực, trung tính, tiêu cực,...) của 1 đối tượng bằng việc sử dụng các thuật toán của Machine Learning """) 
     st.write(""" ###### Sentiment Analysis thông qua đánh giá và nhận xét của khách hàng khi tham gia trãi nghiệm dịch vụ có vai trò quan trọng trong việc quảng bá kinh doanh của doanh nghiệp. Phân tích được cảm xúc của khách hàng về sản phẩm/dịch vụ là tích cực hay tiêu cực giúp doanh nghiệp tổng quan được tình hình hoạt động, đề ra các chiến lược để quảng bá sản phẩm.""")
     st.write("###### => Mục tiêu: Sử dụng các thuật toán Machine Learning trong Python để thực hiện Sentiment Analysis")
     st.image(r"sentiment.jpg")
 
-    st.subheader("EDA", divider='rainbow')
+    st.subheader("EDA", divider='grey')
     
     # Tạo khung subplot 
     st.write("##### 1. Visualize Rating Distribution")
