@@ -34,25 +34,25 @@ from select_id import *
 
 # GUI
 st.title("DATA SCIENCE PROJECT")
-st.write("## SENTIMENT ANALYSIS")
-menu = ["BUSSINESS OBJECTIVE", "ABOUT PROJECT", "PREDICT COMMENT", "RECOMMEND ON ID"]
+st.write("## Project 1: SENTIMENT ANALYSIS")
+menu = ["ABOUT PROJECT", "PREDICT COMMENT", "RECOMMEND ON ID"]
 choice = st.sidebar.selectbox('CONTENTS', menu)
-if choice == 'BUSSINESS OBJECTIVE':    
-    st.subheader("Business Objective")
-    st.write("""
-             #### Sentiment Analysis through reviews and comments on products and services is one of the common natural language processing tasks in business. Natural language processing and machine learning can help classify customer emotions accurately.""") 
-    st.write("#### => Problem/ Requirement: Use Machine Learning algorithms in Python for Sentiment analysis.")
+if choice == 'ABOUT PROJECT':
+    st.subheader("Business Objective", divider='rainbow')
+    st.write(""" ###### Sentiment Analysis (Phân tích tình cảm/cảm xúc) là một trong những cách sử dụng ngôn ngữ tự nhiên để nhận diện và nghiên cứu trạng thái cảm xúc và thông tin chủ quan một cách có hệ thống. Sentiment Analysis là quá trình phân tích, đánh giá quan điểm (tích cực, trung tính, tiêu cực,...) của 1 đối tượng bằng việc sử dụng các thuật toán của Machine Learning """) 
+    st.write(""" ###### Sentiment Analysis thông qua đánh giá và nhận xét của khách hàng khi tham gia trãi nghiệm dịch vụ có vai trò quan trọng trong việc quảng bá kinh doanh của doanh nghiệp. Phân tích được cảm xúc của khách hàng về sản phẩm/dịch vụ là tích cực hay tiêu cực giúp doanh nghiệp tổng quan được tình hình hoạt động, đề ra các chiến lược để quảng bá sản phẩm.""")
+    st.write("###### => Mục tiêu: Sử dụng các thuật toán Machine Learning trong Python để thực hiện Sentiment Analysis")
     st.image(r"sentiment.jpg")
 
-if choice == 'ABOUT PROJECT':
-    st.subheader("About Project")
-    reviews = pd.read_csv(r'2_Reviews.csv')
+    st.subheader("EDA", divider='rainbow')
+    
     # Tạo khung subplot 
     st.write("##### 1. Visualize Rating Distribution")
-    fig = sns.histplot(data=reviews, x='Rating').set_title('Rating Distribution')
-    st.pyplot(fig.figure)
-    st.write("Đánh giá của khách hàng về nhà hàng chiếm phần lớn ở mức từ 7 điểm trở lên")
-    st.write("=> Đề xuấT phân loại khách hàng: Positive (Rating > 8), Neutral (Rating > 6), Negative")
+    data = pd.read_csv(r"Reviews_concat.csv") 
+    fig1 = sns.histplot(data=data, x='Rating').set_title('Rating Distribution')
+    st.pyplot(fig1.figure)
+    st.write("###### Thang điểm Rating của về dịch vụ của các nhà hàng dựa trên thang đo 10. Các đánh giá của khách hàng chiếm phần lớn ở mức từ 7 điểm trở lên")
+    st.write("###### => Đề xuất phân loại cảm xúc: Positive (Rating > 8), Neutral (Rating > 6), Negative")
 
     ## Preprocessing
     st.write("##### 2. Preprocessing")
@@ -64,9 +64,9 @@ if choice == 'ABOUT PROJECT':
               order = a['Sentiment'].value_counts().index)
 
     st.pyplot(fig.figure)
-    st.write("Nhận xét: Sự mất cân bằng dữ liệu là không đáng kể khi phân loại theo thang đó đề xuất.")
-    st.write("Tuy nhiên, đánh giá của khách hàng theo Rating không khớp với lời nhận xét của họ. Bởi vì có thể khách hàng bị hiểu nhầm Rating đang được đo trên thang điểm 5. Vì vậy nếu dùng Rating để phân tích sẽ cho kết quả không hiệu quả.") 
-    st.write("=> Dùng nhận xét (Comment) của khách hàng để phân tích")
+    st.write("###### Nhận xét: Sự mất cân bằng dữ liệu là không đáng kể khi phân loại theo thang đó đề xuất.")
+    st.write("###### Tuy nhiên, đánh giá của khách hàng theo Rating không khớp với lời nhận xét của họ. Bởi vì có thể khách hàng bị hiểu nhầm Rating đang được đo trên thang điểm 5. Vì vậy nếu dùng Rating để phân tích sẽ cho kết quả không hiệu quả.") 
+    st.write("###### => Dùng nhận xét (Comment) của khách hàng để phân tích")
 
     st.write("##### 3. Build Model")
     reviews = pd.read_csv(r'Reviews_after_EDA_1.csv')
