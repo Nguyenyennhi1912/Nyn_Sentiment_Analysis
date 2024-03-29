@@ -42,7 +42,7 @@ if choice == 'BUSSINESS OBJECTIVE':
     st.write("""
              #### Sentiment Analysis through reviews and comments on products and services is one of the common natural language processing tasks in business. Natural language processing and machine learning can help classify customer emotions accurately.""") 
     st.write("#### => Problem/ Requirement: Use Machine Learning algorithms in Python for Sentiment analysis.")
-    st.image(r"GUI\sentiment.jpg")
+    st.image(r"sentiment.jpg")
 
 if choice == 'ABOUT PROJECT':
     st.subheader("About Project")
