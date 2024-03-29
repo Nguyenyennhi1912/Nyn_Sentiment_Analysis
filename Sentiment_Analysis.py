@@ -30,7 +30,7 @@ from sklearn.svm import SVC
 from datetime import datetime
 from sklearn.model_selection import *
 from xu_ly_tieng_viet import *
-# from select_id import *
+from select_id import *
 
 # GUI
 st.title("DATA SCIENCE PROJECT")
@@ -46,7 +46,7 @@ if choice == 'BUSSINESS OBJECTIVE':
 
 if choice == 'ABOUT PROJECT':
     st.subheader("About Project")
-    reviews = pd.read_csv(r'GUI\2_Reviews.csv')
+    reviews = pd.read_csv(r'2_Reviews.csv')
     # Tạo khung subplot 
     st.write("##### 1. Visualize Rating Distribution")
     fig = sns.histplot(data=reviews, x='Rating').set_title('Rating Distribution')
@@ -56,7 +56,7 @@ if choice == 'ABOUT PROJECT':
 
     ## Preprocessing
     st.write("##### 2. Preprocessing")
-    a = pd.read_csv(r'GUI\Sentiment_by_Rating.csv')
+    a = pd.read_csv(r'Sentiment_by_Rating.csv')
     st.dataframe(a[["Rating","Comment","Sentiment"]].head(10))
     fig = sns.countplot(data=a,
               x='Sentiment',
@@ -69,9 +69,9 @@ if choice == 'ABOUT PROJECT':
     st.write("=> Dùng nhận xét (Comment) của khách hàng để phân tích")
 
     st.write("##### 3. Build Model")
-    reviews = pd.read_csv(r'GUI\Reviews_after_EDA_1.csv')
-    y_test = pd.read_csv(r"GUI\y_test.csv")
-    y_pred_SVC = pd.read_csv(r"GUI\y_pred_SVC.csv")
+    reviews = pd.read_csv(r'Reviews_after_EDA_1.csv')
+    y_test = pd.read_csv(r"y_test.csv")
+    y_pred_SVC = pd.read_csv(r"y_pred_SVC.csv")
     y_pred_SVC = y_pred_SVC.to_numpy()
     
     st.code(confusion_matrix(y_test, y_pred_SVC))
@@ -87,7 +87,7 @@ elif choice == 'PREDICT COMMENT':
         content = st.text_area("Nhập ý kiến:")
         comment = optimized_process_text(content)
         # Nếu người dùng nhập dữ liệu đưa content này vào thành 1 dòng trong DataFrame
-        with open(r'GUI\pipeline_SVC_1.pkl', 'rb') as file:  
+        with open(r'pipeline_SVC_1.pkl', 'rb') as file:  
             model = pickle.load(file)
         comment_pred = model.predict([comment])
         # st.code("New predictions: " + str(comment_pred))
@@ -119,7 +119,7 @@ elif choice == 'PREDICT COMMENT':
 
 elif choice == 'RECOMMEND ON ID':
     st.subheader("Recommend on IDRestaurant")
-    data = pd.read_csv(r"GUI\Reviews_concat.csv")
+    data = pd.read_csv(r"Reviews_concat.csv")
     # Cho người dùng chọn nhập ID nhà hàng và xem thông tin nhà hàng đó
     type = st.selectbox("What's IDRestaurant?", list(data['IDRestaurant'].unique()))
     visual = st.radio("Do you want to visualize the data?", ("Yes", "No"))
