@@ -13,3 +13,4 @@ underthesea
 xgboost
 datetime
 imbalanced-learn
+wordcloud
