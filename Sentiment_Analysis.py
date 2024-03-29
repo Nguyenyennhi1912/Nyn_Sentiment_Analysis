@@ -100,7 +100,7 @@ elif choice == 'PREDICT COMMENT':
             df = df.append({"Comment": st.text_area(f"Nhập ý kiến {i+1}:")}, ignore_index=True)
         df.dropna(inplace=True)
         df['Cleaned'] = df['Comment'].apply(lambda x: optimized_process_text(x))        
-        with open(r'GUI\pipeline_SVC_1.pkl', 'rb') as file:  
+        with open(r'pipeline_SVC_1.pkl', 'rb') as file:  
             model = pickle.load(file)
         df['Prediction'] = df['Cleaned'].apply(lambda x: model.predict([x]))  
         # st.dataframe(df[["Comment","Prediction"]])
