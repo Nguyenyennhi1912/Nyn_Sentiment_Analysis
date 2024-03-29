@@ -33,18 +33,20 @@ from xu_ly_tieng_viet import *
 from select_id import *
 
 # GUI
-menu = ["Business Objective", "Result Model", "Predict Comment", "Recommend based on IDRestaurant"]
-choice = st.sidebar.selectbox('### Menu', menu)
-if choice == 'Business Objective':    
+st.title("DATA SCIENCE PROJECT")
+st.write("## SENTIMENT ANALYSIS")
+menu = ["BUSSINESS OBJECTIVE", "ABOUT PROJECT", "PREDICT COMMENT", "RECOMMEND ON ID"]
+choice = st.sidebar.selectbox('CONTENTS', menu)
+if choice == 'BUSSINESS OBJECTIVE':    
     st.subheader("Business Objective")
     st.write("""
              #### Sentiment Analysis through reviews and comments on products and services is one of the common natural language processing tasks in business. Natural language processing and machine learning can help classify customer emotions accurately.""") 
     st.write("#### => Problem/ Requirement: Use Machine Learning algorithms in Python for Sentiment analysis.")
     st.image(r"GUI\sentiment.jpg")
 
-if choice == 'Result Model':
-    st.subheader("Result Model")
-    reviews = pd.read_csv(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\2_Reviews.csv')
+if choice == 'ABOUT PROJECT':
+    st.subheader("About Project")
+    reviews = pd.read_csv(r'2_Reviews.csv')
     # Tạo khung subplot 
     st.write("##### 1. Visualize Rating Distribution")
     fig = sns.histplot(data=reviews, x='Rating').set_title('Rating Distribution')
@@ -54,7 +56,7 @@ if choice == 'Result Model':
 
     ## Preprocessing
     st.write("##### 2. Preprocessing")
-    a = pd.read_csv(r'Project1\Sentiment_by_Rating.csv')
+    a = pd.read_csv(r'GUI\Sentiment_by_Rating.csv')
     st.dataframe(a[["Rating","Comment","Sentiment"]].head(10))
     fig = sns.countplot(data=a,
               x='Sentiment',
@@ -75,7 +77,7 @@ if choice == 'Result Model':
     st.code(confusion_matrix(y_test, y_pred_SVC))
     st.code(classification_report(y_test, y_pred_SVC))
 
-elif choice == 'Predict Comment':    
+elif choice == 'PREDICT COMMENT':    
     st.subheader("Predict Comment")
     # Cho người dùng chọn nhập dữ liệu hoặc upload file
     type = st.radio("Chọn cách nhập dữ liệu", options=["Nhập dữ liệu vào text area", "Nhập nhiều dòng dữ liệu trực tiếp"])
@@ -115,9 +117,9 @@ elif choice == 'Predict Comment':
         # elif type == "Upload file":
             # st.write(df)
 
-elif choice == 'Recommend based on IDRestaurant':
-    st.subheader("Recommend based on IDRestaurant")
-    data = pd.read_csv(r"Project1\Reviews_concat.csv")
+elif choice == 'RECOMMEND ON ID':
+    st.subheader("Recommend on IDRestaurant")
+    data = pd.read_csv(r"GUI\Reviews_concat.csv")
     # Cho người dùng chọn nhập ID nhà hàng và xem thông tin nhà hàng đó
     type = st.selectbox("What's IDRestaurant?", list(data['IDRestaurant'].unique()))
     visual = st.radio("Do you want to visualize the data?", ("Yes", "No"))
