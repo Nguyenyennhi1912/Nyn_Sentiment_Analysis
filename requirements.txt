@@ -9,7 +9,6 @@ demoji
 pyvi
 imblearn
 scikit-learn
-pickle
 underthesea
 xgboost
 datetime
