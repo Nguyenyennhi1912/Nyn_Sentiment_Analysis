@@ -21,7 +21,7 @@ import pickle
 # 2. Read data
 def load_lst():
     ##LOAD EMOJICON
-    file = open(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\files\emojicon.txt', encoding="utf8")
+    file = open(r'GUI\emojicon.txt', encoding="utf8")
     emoji_lst = file.read().split('\n')
     emoji_dict = {}
     for line in emoji_lst:
@@ -30,7 +30,7 @@ def load_lst():
     file.close()
     #################
     #LOAD TEENCODE
-    file = open(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\files\teencode.txt', encoding="utf8")
+    file = open(r'GUI\teencode.txt', encoding="utf8")
     teen_lst = file.read().split('\n')
     teen_dict = {}
     for line in teen_lst:
@@ -39,7 +39,7 @@ def load_lst():
     file.close()
     ###############
     #LOAD TRANSLATE ENGLISH -> VNMESE
-    file = open(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\files\english-vnmese.txt', encoding="utf8")
+    file = open(r'GUI\english-vnmese.txt', encoding="utf8")
     english_lst = file.read().split('\n')
     english_dict = {}
     for line in english_lst:
@@ -48,12 +48,12 @@ def load_lst():
     file.close()
     ################
     #LOAD wrong words
-    file = open(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\files\wrong-word.txt', encoding="utf8")
+    file = open(r'GUI\wrong-word.txt', encoding="utf8")
     wrong_lst = file.read().split('\n')
     file.close()
     #################
     #LOAD STOPWORDS
-    file = open(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\files\vietnamese-stopwords.txt', encoding="utf8")
+    file = open(r'GUI\vietnamese-stopwords.txt', encoding="utf8")
     stopwords_lst = file.read().split('\n')
     file.close()
     return emoji_dict, teen_dict, english_dict, wrong_lst, stopwords_lst
