@@ -11,10 +11,11 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn import metrics
 import seaborn as sns
+from underthesea import word_tokenize, pos_tag, sent_tokenize
 import regex
 import demoji
+from pyvi import ViPosTagger, ViTokenizer
 import string
-import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
@@ -22,7 +23,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import metrics
-from pyvi import ViTokenizer, ViPosTagger
 from imblearn.over_sampling import SMOTE
 from sklearn.linear_model import LogisticRegression
 from xgboost import XGBClassifier
@@ -33,21 +33,52 @@ from xu_ly_tieng_viet import *
 from select_id import *
 
 # GUI
-st.title("Data Science Project")
-st.write("## Sentiment Analysis")
-menu = ["Home", "Result Model", "Predict Comment", "Recommend based on IDRestaurant"]
-choice = st.sidebar.selectbox('Menu', menu)
-if choice == 'Home':    
-    st.subheader("[Github](https://github.com/Nguyenyennhi1912?tab=repositories)")
+menu = ["Business Objective", "Result Model", "Predict Comment", "Recommend based on IDRestaurant"]
+choice = st.sidebar.selectbox('### Menu', menu)
+if choice == 'Business Objective':    
+    st.subheader("Business Objective")
+    st.write("""
+             #### Sentiment Analysis through reviews and comments on products and services is one of the common natural language processing tasks in business. Natural language processing and machine learning can help classify customer emotions accurately.""") 
+    st.write("#### => Problem/ Requirement: Use Machine Learning algorithms in Python for Sentiment analysis.")
+    st.image(r"C:\Users\Admin\Desktop\Project Python\GUI\sentiment.jpg")
 
-#elif choice == 'Result Model':
+if choice == 'Result Model':
+    st.subheader("Result Model")
+    reviews = pd.read_csv(r'C:\Users\Admin\Desktop\Project Python\GUI\Cung_cap_HV_ShopeeFood\2_Reviews.csv')
+    # Tạo khung subplot 
+    st.write("##### 1. Visualize Rating Distribution")
+    fig = sns.histplot(data=reviews, x='Rating').set_title('Rating Distribution')
+    st.pyplot(fig.figure)
+    st.write("Đánh giá của khách hàng về nhà hàng chiếm phần lớn ở mức từ 7 điểm trở lên")
+    st.write("=> Đề xuấT phân loại khách hàng: Positive (Rating > 8), Neutral (Rating > 6), Negative")
 
+    ## Preprocessing
+    st.write("##### 2. Preprocessing")
+    a = pd.read_csv(r'C:\Users\Admin\Desktop\Project Python\Project1\Sentiment_by_Rating.csv')
+    st.dataframe(a[["Rating","Comment","Sentiment"]].head(10))
+    fig = sns.countplot(data=a,
+              x='Sentiment',
+              palette="mako",
+              order = a['Sentiment'].value_counts().index)
 
+    st.pyplot(fig.figure)
+    st.write("Nhận xét: Sự mất cân bằng dữ liệu là không đáng kể khi phân loại theo thang đó đề xuất.")
+    st.write("Tuy nhiên, đánh giá của khách hàng theo Rating không khớp với lời nhận xét của họ. Bởi vì có thể khách hàng bị hiểu nhầm Rating đang được đo trên thang điểm 5. Vì vậy nếu dùng Rating để phân tích sẽ cho kết quả không hiệu quả.") 
+    st.write("=> Dùng nhận xét (Comment) của khách hàng để phân tích")
+
+    st.write("##### 3. Build Model")
+    reviews = pd.read_csv(r'Project1/Reviews_after_EDA_1.csv')
+    y_test = pd.read_csv(r"Project1\y_test.csv")
+    y_pred_SVC = pd.read_csv(r"Project1\y_pred_SVC.csv")
+    y_pred_SVC = y_pred_SVC.to_numpy()
+    
+    st.code(confusion_matrix(y_test, y_pred_SVC))
+    st.code(classification_report(y_test, y_pred_SVC))
 
 elif choice == 'Predict Comment':    
     st.subheader("Predict Comment")
     # Cho người dùng chọn nhập dữ liệu hoặc upload file
-    type = st.radio("Chọn cách nhập dữ liệu", options=["Nhập dữ liệu vào text area", "Nhập nhiều dòng dữ liệu trực tiếp", "Upload file"])
+    type = st.radio("Chọn cách nhập dữ liệu", options=["Nhập dữ liệu vào text area", "Nhập nhiều dòng dữ liệu trực tiếp"])
     # Nếu người dùng chọn nhập dữ liệu vào text area
     if type == "Nhập dữ liệu vào text area":
         st.subheader("Nhập dữ liệu vào text area")
@@ -72,15 +103,6 @@ elif choice == 'Predict Comment':
         df['Prediction'] = df['Cleaned'].apply(lambda x: model.predict([x]))  
         # st.dataframe(df[["Comment","Prediction"]])
 
-# Nếu người dùng chọn upload file
-    elif type == "Upload file":
-        st.subheader("Upload file")
-        # Upload file
-        uploaded_file = st.file_uploader("Chọn file dữ liệu", type=["csv", "txt"])
-        if uploaded_file is not None:
-            # Đọc file dữ liệu
-            df = pd.read_csv(uploaded_file)
-            st.write(df)
 #######        
     # Từ df này, người dùng có thể thực hiện các xử lý dữ liệu khác nhau
     submitted_project1 = st.button("Submit")
