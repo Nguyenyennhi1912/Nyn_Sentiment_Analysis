@@ -46,7 +46,7 @@ if choice == 'BUSSINESS OBJECTIVE':
 
 if choice == 'ABOUT PROJECT':
     st.subheader("About Project")
-    reviews = pd.read_csv(r'2_Reviews.csv')
+    reviews = pd.read_csv(r'GUI\2_Reviews.csv')
     # Tạo khung subplot 
     st.write("##### 1. Visualize Rating Distribution")
     fig = sns.histplot(data=reviews, x='Rating').set_title('Rating Distribution')
