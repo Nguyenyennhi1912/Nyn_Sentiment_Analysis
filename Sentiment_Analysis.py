@@ -38,6 +38,8 @@ st.write("## Project 1: SENTIMENT ANALYSIS")
 menu = ["ABOUT PROJECT", "PREDICT COMMENT", "RECOMMEND ON ID"]
 choice = st.sidebar.selectbox('CONTENTS', menu)
 if choice == 'ABOUT PROJECT':
+    st.subheader("Team")
+    st.write(""" ##### Nguyễn Yến Nhi - Lê Yên Hà""") 
     st.subheader("Business Objective")
     st.write(""" ###### Sentiment Analysis (Phân tích tình cảm/cảm xúc) là một trong những cách sử dụng ngôn ngữ tự nhiên để nhận diện và nghiên cứu trạng thái cảm xúc và thông tin chủ quan một cách có hệ thống. Sentiment Analysis là quá trình phân tích, đánh giá quan điểm (tích cực, trung tính, tiêu cực,...) của 1 đối tượng bằng việc sử dụng các thuật toán của Machine Learning """) 
     st.write(""" ###### Sentiment Analysis thông qua đánh giá và nhận xét của khách hàng khi tham gia trãi nghiệm dịch vụ có vai trò quan trọng trong việc quảng bá kinh doanh của doanh nghiệp. Phân tích được cảm xúc của khách hàng về sản phẩm/dịch vụ là tích cực hay tiêu cực giúp doanh nghiệp tổng quan được tình hình hoạt động, đề ra các chiến lược để quảng bá sản phẩm.""")
@@ -68,11 +70,11 @@ if choice == 'ABOUT PROJECT':
     st.write("###### Tuy nhiên, đánh giá của khách hàng theo Rating không khớp với lời nhận xét của họ. Bởi vì có thể khách hàng bị hiểu nhầm Rating đang được đo trên thang điểm 5. Vì vậy nếu dùng Rating để phân tích sẽ cho kết quả không hiệu quả.") 
     st.write("###### => Dùng nhận xét (Comment) của khách hàng để phân tích")
 
-    st.write("##### 3. Build Model")
-    reviews = pd.read_csv(r'Reviews_after_EDA_1.csv')
-    y_test = pd.read_csv(r"y_test.csv")
-    y_pred_SVC = pd.read_csv(r"y_pred_SVC.csv")
-    y_pred_SVC = y_pred_SVC.to_numpy()
+    # st.write("##### 3. Build Model")
+    # reviews = pd.read_csv(r'Reviews_after_EDA_1.csv')
+    # y_test = pd.read_csv(r"y_test.csv")
+    # y_pred_SVC = pd.read_csv(r"y_pred_SVC.csv")
+    # y_pred_SVC = y_pred_SVC.to_numpy()
     
     st.code(confusion_matrix(y_test, y_pred_SVC))
     st.code(classification_report(y_test, y_pred_SVC))
