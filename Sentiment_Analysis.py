@@ -76,8 +76,8 @@ if choice == 'ABOUT PROJECT':
     # y_pred_SVC = pd.read_csv(r"y_pred_SVC.csv")
     # y_pred_SVC = y_pred_SVC.to_numpy()
     
-    st.code(confusion_matrix(y_test, y_pred_SVC))
-    st.code(classification_report(y_test, y_pred_SVC))
+    # st.code(confusion_matrix(y_test, y_pred_SVC))
+    # st.code(classification_report(y_test, y_pred_SVC))
 
 elif choice == 'PREDICT COMMENT':    
     st.subheader("Predict Comment")
